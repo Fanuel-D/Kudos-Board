@@ -11,6 +11,7 @@ function Modal({ isOpenBool, isClosedFunc }) {
     author: "",
     image: "",
   });
+
   if (formData.image == "") {
     const randomNumber = Math.floor(Math.random() * 21);
     let newImage = `https://picsum.photos/200/300?random=${randomNumber}`;
