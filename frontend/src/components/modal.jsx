@@ -52,6 +52,7 @@ function Modal({ isOpenBool, isClosedFunc }) {
               <label htmlFor="">Title</label>
               <input
                 style={{ border: "solid black 1px" }}
+                name="title"
                 type="text"
                 onChange={handleChange}
                 value={formData.title}
@@ -69,12 +70,14 @@ function Modal({ isOpenBool, isClosedFunc }) {
               <label htmlFor="">Author</label>
               <input
                 style={{ border: "solid black 1px" }}
+                name="author"
                 onChange={handleChange}
                 type="text"
                 value={formData.author}
               />
+              <button type="submit">Submit</button>
             </form>
-            <button type="submit">Submit</button>
+
             <button
               className="closeButton"
               style={{ width: "40%" }}
