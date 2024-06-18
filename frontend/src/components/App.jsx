@@ -11,6 +11,22 @@ function App() {
     event.stopPropagation();
     setModalOpen(false);
   };
+  const handleDelete = (id) => {
+    fetch(`http://localhost:3000/boards/${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to delete the pet.");
+        }
+
+        setBoards(boards.filter((board) => board.id !== id));
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        setError("Failed to delete pet. Please try again later.");
+      });
+  };
   useEffect(() => {
     fetch(`http://localhost:3000/boards`, { method: "GET" })
       .then((response) => {
@@ -25,7 +41,7 @@ function App() {
       .catch((error) => {
         console.error("There was a problem with your fetch operation:", error);
       });
-  }, []);
+  }, [boards]);
 
   return (
     <div className="App" style={{ textAlign: "center" }}>
@@ -53,7 +69,13 @@ function App() {
       <Modal isOpenBool={isModalOpen} isClosedFunc={handleClosed} />
       <div className="bodyPart">
         {boards.map((board) => {
-          return <KudosCard board={board} />;
+          return (
+            <KudosCard
+              key={board.boardId}
+              board={board}
+              handleDelete={handleDelete}
+            />
+          );
         })}
       </div>
       <footer className="appFooter">Designed by Fanuel Dana</footer>

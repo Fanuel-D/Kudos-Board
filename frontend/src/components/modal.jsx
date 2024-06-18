@@ -11,6 +11,12 @@ function Modal({ isOpenBool, isClosedFunc }) {
     author: "",
     image: "",
   });
+  if (formData.image == "") {
+    const randomNumber = Math.floor(Math.random() * 21);
+    let newImage = `https://picsum.photos/200/300?random=${randomNumber}`;
+    setFormData({ image: newImage });
+  }
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -58,7 +64,12 @@ function Modal({ isOpenBool, isClosedFunc }) {
                 value={formData.title}
               />
               <label htmlFor="">Category</label>
-              <select name="" id="" defaultValue="select">
+              <select
+                name="category"
+                id=""
+                defaultValue="select"
+                onChange={handleChange}
+              >
                 <option value="select" disabled>
                   Select Category
                 </option>
