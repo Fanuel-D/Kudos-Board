@@ -1,7 +1,7 @@
-import "../styles/kudosCard.css";
+import "../styles/kudosBoard.css";
 import PropTypes from "prop-types";
 
-function KudosCard() {
+function KudosCard({ board }) {
   return (
     <div
       className="kudos-card"
@@ -12,8 +12,8 @@ function KudosCard() {
         className="lowerMovieCardPart"
         style={{ display: "flex", flexDirection: "column" }}
       >
-        <p>Content Goes here</p>
-        <p>Type of celebration goes here</p>
+        <p>{board.title}</p>
+        <p>{board.author}</p>
         <div className="bottomButtons">
           <button className="viewBoard"> View Board</button>
           <button style={{ backgroundColor: "blue" }} className="deleteBoard">
