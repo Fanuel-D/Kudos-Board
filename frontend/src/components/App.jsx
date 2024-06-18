@@ -8,6 +8,7 @@ function App() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [boards, setBoards] = useState([]);
+  const [filter, setFilter] = useState("all");
   const handleClosed = (event) => {
     event.stopPropagation();
     setModalOpen(false);
@@ -35,7 +36,7 @@ function App() {
   };
 
   useEffect(() => {
-    let URL = "http://localhost:3000/boards";
+    let URL = `http://localhost:3000/boards?filter=${filter}`;
     if (searchQuery != "") {
       URL = `http://localhost:3000/boards/search?boardName=${searchQuery}`;
     }
@@ -52,7 +53,7 @@ function App() {
       .catch((error) => {
         console.error("There was a problem with your fetch operation:", error);
       });
-  }, [boards, searchQuery]);
+  }, [boards, searchQuery, filter]);
 
   return (
     <div className="App" style={{ textAlign: "center" }}>
@@ -62,11 +63,11 @@ function App() {
         </h1>
         <SearchForm className="searchForm" formUpdate={handleFormSubmit} />
         <div>
-          <button>All</button>
-          <button>Recent</button>
-          <button>Celebrations</button>
-          <button>Thank You</button>
-          <button>Inspiration</button>
+          <button onClick={() => setFilter("all")}>All</button>
+          <button onClick={() => setFilter("recent")}>Recent</button>
+          <button onClick={() => setFilter("celebration")}>Celebrations</button>
+          <button onClick={() => setFilter("thankYou")}>Thank You</button>
+          <button onClick={() => setFilter("inspiration")}>Inspiration</button>
         </div>
         <button
           onClick={() => setModalOpen(true)}
