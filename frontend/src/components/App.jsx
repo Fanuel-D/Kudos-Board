@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import SearchForm from "./SearchForm";
 import KudosBoard from "./kudosBoard";
-import KudosCard from "./kudosCard";
+import CardPage from "./cardPage.jsx";
 import "../styles/App.css";
 import Modal from "./modal.jsx";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -32,7 +32,7 @@ function App() {
           throw new Error("Failed to delete the pet.");
         }
 
-        setBoards(boards.filter((board) => board.id !== id));
+        setBoards(boards.filter((board) => board.boardId !== id));
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -116,7 +116,7 @@ function App() {
             </div>
           }
         />
-        <Route path="/boards/:id" element={<KudosCard />} />
+        <Route path="/boards/:id" element={<CardPage />} />
       </Routes>
     </Router>
   );

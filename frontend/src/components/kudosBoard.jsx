@@ -3,7 +3,7 @@ import "../styles/kudosBoard.css";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-function KudosBoard({ board, handleDelete, viewClicked }) {
+function KudosBoard({ board, handleDelete }) {
   const deleteClicked = (e) => {
     e.stopPropagation();
     handleDelete(board.boardId);

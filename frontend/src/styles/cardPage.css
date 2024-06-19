@@ -1,0 +1,15 @@
+.singleCard {
+  background-color: aqua;
+  margin: 30px;
+  border: none;
+  border-radius: 10px;
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.cardList {
+  display: flex;
+  justify-content: center;
+}
