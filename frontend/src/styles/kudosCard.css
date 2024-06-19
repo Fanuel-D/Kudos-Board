@@ -1,0 +1,11 @@
+.kudosCard {
+  background-color: teal;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 10px;
+}

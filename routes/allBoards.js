@@ -73,8 +73,24 @@ router.post("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
   try {
+    await prisma.card.deleteMany({
+      where: { boardId: parseInt(id) },
+    });
     const deletedBoard = await prisma.board.delete({
       where: { boardId: parseInt(id) },
+    });
+    res.json(deletedBoard);
+  } catch (error) {
+    console.error(error); // Log the error to help diagnose the issue
+    res.status(500).send("Internal server error");
+  }
+});
+
+router.delete("/:id/:cardId", async (req, res) => {
+  const { id, cardId } = req.params;
+  try {
+    const deletedBoard = await prisma.card.delete({
+      where: { cardId: parseInt(cardId), boardId: parseInt(id) },
     });
     res.json(deletedBoard);
   } catch (error) {

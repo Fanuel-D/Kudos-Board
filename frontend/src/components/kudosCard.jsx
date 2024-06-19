@@ -1,10 +1,11 @@
+import "../styles/kudosCard.css";
 function KudosCard({ card, handleDelete }) {
   const deleteClicked = (e) => {
     e.stopPropagation();
     handleDelete(card.cardId);
   };
   return (
-    <div>
+    <div className="kudosCard">
       <img src="" alt="there is a gif here" />
       <div>
         <p>{card.cardTitle}</p>
