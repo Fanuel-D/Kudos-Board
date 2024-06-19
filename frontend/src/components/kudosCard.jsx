@@ -36,9 +36,15 @@ function KudosCard() {
     <div>
       <button onClick={handleCreateButtonClicked}>Create Cards</button>
       <div className="singleCard">
-        <p>{cards.cardTitle}</p>
-        <p>{cards.message}</p>
-        <p>{cards.author}</p>
+        {cards.map((card) => {
+          return (
+            <div className="singleCard">
+              <p>{card.cardTitle}</p>
+              <p>{card.message}</p>
+              <p>{card.author}</p>
+            </div>
+          );
+        })}
       </div>
       <CardModal isOpenBool={isModalOpen} isClosedFunc={isClosedFunc} id={id} />
     </div>
