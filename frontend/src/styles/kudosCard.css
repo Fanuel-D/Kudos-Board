@@ -9,3 +9,15 @@
   justify-content: space-evenly;
   padding: 10px;
 }
+
+.cardGif {
+  width: 20%;
+  height: 90%;
+  border: none;
+  border-radius: 15px;
+}
+
+.cardButtons {
+  display: flex;
+  flex-direction: column;
+}
