@@ -1,7 +1,9 @@
 import "../styles/kudosBoard.css";
+
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-function KudosCard({ board, handleDelete }) {
+function KudosCard({ board, handleDelete, viewClicked }) {
   const deleteClicked = (e) => {
     e.stopPropagation();
     handleDelete(board.boardId);
@@ -21,7 +23,12 @@ function KudosCard({ board, handleDelete }) {
         <p>{board.author}</p>
         <p>{board.category}</p>
         <div className="bottomButtons">
-          <button className="viewBoard"> View Board</button>
+          <Link to={"/boards/" + board.boardId}>
+            <button /*onClick={viewClicked}*/ className="viewBoard">
+              {" "}
+              View Board
+            </button>
+          </Link>
           <button
             style={{ backgroundColor: "blue" }}
             className="deleteBoard"
@@ -43,3 +50,9 @@ function KudosCard({ board, handleDelete }) {
 // };
 
 export default KudosCard;
+{
+  /* <a
+href={`http://localhost:3000/boards/${board.boardId}`}
+className="view-board"
+> */
+}

@@ -5,7 +5,13 @@ const { PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
 router.get("/", async (req, res) => {
-  const boards = await prisma.board.findMany();
+  const { filter } = req.query;
+  let boards;
+  if (filter == "all") {
+    boards = await prisma.board.findMany();
+  } else {
+    boards = await prisma.board.findMany({ where: { category: filter } });
+  }
   return res.json(boards);
 });
 
@@ -15,6 +21,19 @@ router.post("/", async (req, res) => {
     data: { title, category, author, image },
   });
   res.json(newBoard);
+});
+
+router.get("/search", async (req, res) => {
+  const { boardName } = req.query;
+  try {
+    const searchedBoards = await prisma.board.findMany({
+      where: { title: boardName }, // Replace "desiredTitle" with the actual title you are searching for
+    });
+    res.json(searchedBoards);
+  } catch (error) {
+    console.error(error); // Log the error to help diagnose the issue
+    res.status(500).send("Internal server error");
+  }
 });
 
 router.get("/:id", async (req, res) => {

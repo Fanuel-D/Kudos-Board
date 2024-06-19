@@ -3,12 +3,16 @@ import SearchForm from "./SearchForm";
 import KudosCard from "./kudosBoard";
 import "../styles/App.css";
 import Modal from "./modal.jsx";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function App() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [viewClicked, setViewClicked] = useState(false);
   const [boards, setBoards] = useState([]);
   const [filter, setFilter] = useState("all");
+
   const handleClosed = (event) => {
     event.stopPropagation();
     setModalOpen(false);
@@ -17,6 +21,7 @@ function App() {
   const handleFormSubmit = (curr) => {
     setSearchQuery(curr);
   };
+  const handleViewClicked = () => {};
 
   const handleDelete = (id) => {
     fetch(`http://localhost:3000/boards/${id}`, {
@@ -56,42 +61,65 @@ function App() {
   }, [boards, searchQuery, filter]);
 
   return (
-    <div className="App" style={{ textAlign: "center" }}>
-      <header className="appHeader">
-        <h1 className="nameOfSite" style={{ marginLeft: "20px" }}>
-          Kudos Board
-        </h1>
-        <SearchForm className="searchForm" formUpdate={handleFormSubmit} />
-        <div>
-          <button onClick={() => setFilter("all")}>All</button>
-          <button onClick={() => setFilter("recent")}>Recent</button>
-          <button onClick={() => setFilter("celebration")}>Celebrations</button>
-          <button onClick={() => setFilter("thankYou")}>Thank You</button>
-          <button onClick={() => setFilter("inspiration")}>Inspiration</button>
-        </div>
-        <button
-          onClick={() => setModalOpen(true)}
-          className="createNewBoardButton"
-          style={{ width: "30%" }}
-        >
-          Create New Board
-        </button>
-      </header>
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div className="App" style={{ textAlign: "center" }}>
+              <header className="appHeader">
+                <h1 className="nameOfSite" style={{ marginLeft: "20px" }}>
+                  Kudos Board
+                </h1>
+                <SearchForm
+                  className="searchForm"
+                  formUpdate={handleFormSubmit}
+                />
+                <div>
+                  <button onClick={() => setFilter("all")}>All</button>
+                  <button onClick={() => setFilter("recent")}>Recent</button>
+                  <button onClick={() => setFilter("celebration")}>
+                    Celebrations
+                  </button>
+                  <button onClick={() => setFilter("thankYou")}>
+                    Thank You
+                  </button>
+                  <button onClick={() => setFilter("inspiration")}>
+                    Inspiration
+                  </button>
+                </div>
+                <button
+                  onClick={() => setModalOpen(true)}
+                  className="createNewBoardButton"
+                  style={{ width: "30%" }}
+                >
+                  Create New Board
+                </button>
+              </header>
 
-      <Modal isOpenBool={isModalOpen} isClosedFunc={handleClosed} />
-      <div className="bodyPart">
-        {boards.map((board) => {
-          return (
-            <KudosCard
-              key={board.boardId}
-              board={board}
-              handleDelete={handleDelete}
-            />
-          );
-        })}
-      </div>
-      <footer className="appFooter">Designed by Fanuel Dana</footer>
-    </div>
+              <Modal isOpenBool={isModalOpen} isClosedFunc={handleClosed} />
+
+              <div className="bodyPart">
+                <div className="innerBodyPart">
+                  {boards.map((board) => {
+                    return (
+                      <KudosCard
+                        key={board.boardId}
+                        board={board}
+                        handleDelete={handleDelete}
+                        //viewClicked={() => navigate("/:" + boardId)}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+              <footer className="appFooter">Designed by Fanuel Dana</footer>
+            </div>
+          }
+        />
+        <Route path="/boards/:id" element={<div> Hello World</div>} />
+      </Routes>
+    </Router>
   );
 }
 
