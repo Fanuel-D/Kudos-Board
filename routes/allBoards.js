@@ -39,10 +39,31 @@ router.get("/search", async (req, res) => {
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const searchedBoard = await prisma.board.findUnique({
+    const searchedBoard = await prisma.card.findMany({
       where: { boardId: parseInt(id) },
     });
     res.json(searchedBoard);
+  } catch (error) {
+    console.error(error); // Log the error to help diagnose the issue
+    res.status(500).send("Internal server error");
+  }
+});
+
+router.post("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const boardId = parseInt(id);
+    const { cardTitle, author, message, gif } = req.body;
+    const board = await prisma.board.findUnique({
+      where: { boardId },
+    });
+    if (!board) {
+      return res.status(404).send("Board not found");
+    }
+    const newCard = await prisma.card.create({
+      data: { cardTitle, author, message, gif, boardId },
+    });
+    res.json(newCard);
   } catch (error) {
     console.error(error); // Log the error to help diagnose the issue
     res.status(500).send("Internal server error");

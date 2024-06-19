@@ -1,6 +1,7 @@
 import { useState } from "react";
 // import PropTypes from "prop-types";
-function CardModal({ isOpenBool, isClosedFunc }) {
+import "../styles/cardModal.css";
+function CardModal({ isOpenBool, isClosedFunc, id }) {
   const [formData, setFormData] = useState({
     cardTitle: "",
     message: "",
@@ -24,7 +25,7 @@ function CardModal({ isOpenBool, isClosedFunc }) {
   };
 
   const handleSubmit = () => {
-    fetch("http://localhost:3000/boards", {
+    fetch(`http://localhost:3000/boards/${id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -48,7 +49,6 @@ function CardModal({ isOpenBool, isClosedFunc }) {
     <div>
       {isOpenBool && (
         <div className="modalBackDrop">
-          {console.log("I am here")}
           <div className="modalContent">
             <form onSubmit={handleSubmit}>
               <label htmlFor="">Title</label>
