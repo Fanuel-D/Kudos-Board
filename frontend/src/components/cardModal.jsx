@@ -1,18 +1,17 @@
-import "../styles/modal.css";
 import { useState } from "react";
 // import PropTypes from "prop-types";
-function Modal({ isOpenBool, isClosedFunc }) {
+function CardModal({ isOpenBool, isClosedFunc }) {
   const [formData, setFormData] = useState({
-    title: "",
-    category: "",
+    cardTitle: "",
+    message: "",
     author: "",
-    image: "",
+    gif: "",
   });
 
-  if (formData.image == "") {
+  if (formData.gif == "") {
     const randomNumber = Math.floor(Math.random() * 21);
     let newImage = `https://picsum.photos/200/300?random=${randomNumber}`;
-    setFormData({ image: newImage });
+    setFormData({ gif: newImage });
   }
 
   const handleChange = (e) => {
@@ -36,7 +35,6 @@ function Modal({ isOpenBool, isClosedFunc }) {
         if (response.ok) {
           return response.json();
         }
-
         throw new Error("Failed to add pet.");
       })
       .then((data) => {
@@ -50,31 +48,17 @@ function Modal({ isOpenBool, isClosedFunc }) {
     <div>
       {isOpenBool && (
         <div className="modalBackDrop">
+          {console.log("I am here")}
           <div className="modalContent">
             <form onSubmit={handleSubmit}>
               <label htmlFor="">Title</label>
               <input
                 style={{ border: "solid black 1px" }}
-                name="title"
+                name="cardTitle"
                 type="text"
                 onChange={handleChange}
-                value={formData.title}
+                value={formData.cardTitle}
               />
-              <label htmlFor="">Category</label>
-              <select
-                name="category"
-                id=""
-                defaultValue="select"
-                onChange={handleChange}
-              >
-                <option value="select" disabled>
-                  Select Category
-                </option>
-                <option value="recent">Recent</option>
-                <option value="celebration">Celebration</option>
-                <option value="thankYou">Thank You</option>
-                <option value="inspiration">Inspiration</option>
-              </select>
               <label htmlFor="">Author</label>
               <input
                 style={{ border: "solid black 1px" }}
@@ -82,6 +66,14 @@ function Modal({ isOpenBool, isClosedFunc }) {
                 onChange={handleChange}
                 type="text"
                 value={formData.author}
+              />
+              <label htmlFor="">Message</label>
+              <input
+                style={{ border: "solid black 1px" }}
+                name="message"
+                onChange={handleChange}
+                type="text"
+                value={formData.message}
               />
               <button type="submit">Submit</button>
             </form>
@@ -105,4 +97,4 @@ function Modal({ isOpenBool, isClosedFunc }) {
 //   isOpenBool: PropTypes.bool,
 //   isClosedFunc: PropTypes.func,
 // };
-export default Modal;
+export default CardModal;

@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import SearchForm from "./SearchForm";
-import KudosCard from "./kudosBoard";
+import KudosBoard from "./kudosBoard";
+import KudosCard from "./kudosCard";
 import "../styles/App.css";
 import Modal from "./modal.jsx";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 function App() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -103,21 +103,20 @@ function App() {
                 <div className="innerBodyPart">
                   {boards.map((board) => {
                     return (
-                      <KudosCard
+                      <KudosBoard
                         key={board.boardId}
                         board={board}
                         handleDelete={handleDelete}
-                        //viewClicked={() => navigate("/:" + boardId)}
                       />
                     );
                   })}
                 </div>
               </div>
-              <footer className="appFooter">Designed by Fanuel Dana</footer>
+              {/* <footer className="appFooter">Designed by Fanuel Dana</footer> */}
             </div>
           }
         />
-        <Route path="/boards/:id" element={<div> Hello World</div>} />
+        <Route path="/boards/:id" element={<KudosCard />} />
       </Routes>
     </Router>
   );
