@@ -1,7 +1,6 @@
 import "../styles/kudosBoard.css";
 
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 
 function KudosBoard({ board, handleDelete }) {
   const deleteClicked = (e) => {
@@ -19,9 +18,14 @@ function KudosBoard({ board, handleDelete }) {
         className="lowerMovieCardPart"
         style={{ display: "flex", flexDirection: "column" }}
       >
-        <p>{board.title}</p>
-        <p>{board.author}</p>
-        <p>{board.category}</p>
+        <div className="boardDetails">
+          <h5 style={{ margin: "4px" }}> Title: {board.title}</h5>
+          <h5 style={{ margin: "4px" }}>
+            Author: {board.author ? board.author : "No name provided"}
+          </h5>
+          <h5 style={{ margin: "4px" }}> category: {board.category}</h5>
+        </div>
+
         <div className="bottomButtons">
           <Link to={"/boards/" + board.boardId}>
             <button className="viewBoard"> View Board</button>

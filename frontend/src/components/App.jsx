@@ -144,7 +144,7 @@ function App() {
                   })}
                 </div>
               </div>
-              {/* <footer className="appFooter">Designed by Fanuel Dana</footer> */}
+              <footer className="appFooter">Designed by Fanuel Dana</footer>
             </div>
           }
         />
