@@ -13,13 +13,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  userId   Int @id @default(autoincrement())
+  name     String
+  email    String
+  password String
+  boards   Board[]
+}
+
 model Board {
-  boardId  Int @id @default(autoincrement())
+  boardId   Int @id @default(autoincrement())
   title     String
   image     String
   category  String
   author    String?
   cards     Card[]
+  user      User? @relation(fields:[userId], references:[userId])
+  userId    Int?
   createdAt String?
 }
 

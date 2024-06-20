@@ -5,12 +5,13 @@ import CardPage from "./cardPage.jsx";
 import "../styles/App.css";
 import Modal from "./modal.jsx";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import LoginForm from "./logInForm";
+import SignupForm from "./signUpForm";
 
 function App() {
   let filteredBoards;
   const [isModalOpen, setModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [viewClicked, setViewClicked] = useState(false);
   const [boards, setBoards] = useState([]);
   const [filter, setFilter] = useState("all");
 
@@ -142,6 +143,8 @@ function App() {
           }
         />
         <Route path="/boards/:id" element={<CardPage />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/signup" element={<SignupForm />} />
       </Routes>
     </Router>
   );
