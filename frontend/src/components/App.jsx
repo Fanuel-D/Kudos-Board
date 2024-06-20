@@ -7,6 +7,7 @@ import Modal from "./modal.jsx";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
+  let filteredBoards;
   const [isModalOpen, setModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [viewClicked, setViewClicked] = useState(false);
@@ -21,7 +22,6 @@ function App() {
   const handleFormSubmit = (curr) => {
     setSearchQuery(curr);
   };
-  const handleViewClicked = () => {};
 
   const handleDelete = (id) => {
     fetch(`http://localhost:3000/boards/${id}`, {
@@ -41,7 +41,7 @@ function App() {
   };
 
   useEffect(() => {
-    let URL = `http://localhost:3000/boards?filter=${filter}`;
+    let URL = `http://localhost:3000/boards`;
     if (searchQuery != "") {
       URL = `http://localhost:3000/boards/search?boardName=${searchQuery}`;
     }
@@ -58,7 +58,47 @@ function App() {
       .catch((error) => {
         console.error("There was a problem with your fetch operation:", error);
       });
-  }, [boards, searchQuery, filter]);
+  }, [boards]);
+
+  const filterBoardsFunction = () => {
+    filteredBoards = boards;
+
+    if (searchQuery != "") {
+      filteredBoards = filteredBoards.filter((board) =>
+        board.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    if (filter === "Recent") {
+      filteredBoards.sort((a, b) => {
+        const dateA = a.createdAt
+          ? new Date(a.createdAt.replace(/\s/, "T"))
+          : new Date(0);
+        const dateB = b.createdAt
+          ? new Date(b.createdAt.replace(/\s/, "T"))
+          : new Date(0);
+        return dateB - dateA;
+      });
+    } else if (filter == "all") {
+      filteredBoards = boards;
+    } else if (filter) {
+      filteredBoards = filteredBoards.filter(
+        (board) => board.category === filter
+      );
+    } else {
+      filteredBoards.sort((a, b) => {
+        const dateA = a.createdAt
+          ? new Date(a.createdAt.replace(/\s/, "T"))
+          : new Date(0);
+        const dateB = b.createdAt
+          ? new Date(b.createdAt.replace(/\s/, "T"))
+          : new Date(0);
+
+        return dateA - dateB;
+      });
+    }
+    return filteredBoards;
+  };
 
   return (
     <Router>
@@ -98,10 +138,9 @@ function App() {
               </header>
 
               <Modal isOpenBool={isModalOpen} isClosedFunc={handleClosed} />
-
               <div className="bodyPart">
                 <div className="innerBodyPart">
-                  {boards.map((board) => {
+                  {filterBoardsFunction().map((board) => {
                     return (
                       <KudosBoard
                         key={board.boardId}
