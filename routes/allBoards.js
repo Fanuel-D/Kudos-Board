@@ -5,20 +5,14 @@ const { PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
 router.get("/", async (req, res) => {
-  const { filter } = req.query;
-  let boards;
-  if (filter == "all") {
-    boards = await prisma.board.findMany();
-  } else {
-    boards = await prisma.board.findMany({ where: { category: filter } });
-  }
+  const boards = await prisma.board.findMany();
   return res.json(boards);
 });
 
 router.post("/", async (req, res) => {
-  const { title, category, author, image } = req.body;
+  const { title, category, author, image, createdAt } = req.body;
   const newBoard = await prisma.board.create({
-    data: { title, category, author, image },
+    data: { title, category, author, image, createdAt },
   });
   res.json(newBoard);
 });
@@ -27,11 +21,16 @@ router.get("/search", async (req, res) => {
   const { boardName } = req.query;
   try {
     const searchedBoards = await prisma.board.findMany({
-      where: { title: boardName }, // Replace "desiredTitle" with the actual title you are searching for
+      where: {
+        title: {
+          contains: boardName,
+          mode: "insensitive",
+        },
+      },
     });
     res.json(searchedBoards);
   } catch (error) {
-    console.error(error); // Log the error to help diagnose the issue
+    console.error(error);
     res.status(500).send("Internal server error");
   }
 });
@@ -44,7 +43,7 @@ router.get("/:id", async (req, res) => {
     });
     res.json(searchedBoard);
   } catch (error) {
-    console.error(error); // Log the error to help diagnose the issue
+    console.error(error);
     res.status(500).send("Internal server error");
   }
 });
@@ -65,7 +64,7 @@ router.post("/:id", async (req, res) => {
     });
     res.json(newCard);
   } catch (error) {
-    console.error(error); // Log the error to help diagnose the issue
+    console.error(error);
     res.status(500).send("Internal server error");
   }
 });
@@ -87,7 +86,7 @@ router.patch("/:id/:cardId", async (req, res) => {
     });
     res.json(updatedCard);
   } catch (error) {
-    console.error(error); // Log the error to help diagnose the issue
+    console.error(error);
     res.status(500).send("Internal server error");
   }
 });
@@ -103,7 +102,7 @@ router.delete("/:id", async (req, res) => {
     });
     res.json(deletedBoard);
   } catch (error) {
-    console.error(error); // Log the error to help diagnose the issue
+    console.error(error);
     res.status(500).send("Internal server error");
   }
 });
@@ -116,7 +115,7 @@ router.delete("/:id/:cardId", async (req, res) => {
     });
     res.json(deletedBoard);
   } catch (error) {
-    console.error(error); // Log the error to help diagnose the issue
+    console.error(error);
     res.status(500).send("Internal server error");
   }
 });

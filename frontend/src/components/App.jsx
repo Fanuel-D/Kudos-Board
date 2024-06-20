@@ -62,13 +62,6 @@ function App() {
 
   const filterBoardsFunction = () => {
     filteredBoards = boards;
-
-    if (searchQuery != "") {
-      filteredBoards = filteredBoards.filter((board) =>
-        board.title.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    }
-
     if (filter === "recent") {
       filteredBoards.sort((a, b) => {
         const dateA = a.createdAt ? new Date(a.createdAt) : new Date(0);
