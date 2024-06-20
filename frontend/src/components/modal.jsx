@@ -73,7 +73,6 @@ function Modal({ isOpenBool, isClosedFunc }) {
                 <option value="select" disabled>
                   Select Category
                 </option>
-                <option value="recent">Recent</option>
                 <option value="celebration">Celebration</option>
                 <option value="thankYou">Thank You</option>
                 <option value="inspiration">Inspiration</option>
