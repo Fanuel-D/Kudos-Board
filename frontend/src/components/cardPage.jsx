@@ -64,7 +64,7 @@ function CardPage() {
         {cards.map((card) => {
           return (
             <div key={card.cardId} className="cardList">
-              <KudosCard card={card} handleDelete={handleDelete} />
+              <KudosCard id={id} card={card} handleDelete={handleDelete} />
             </div>
           );
         })}

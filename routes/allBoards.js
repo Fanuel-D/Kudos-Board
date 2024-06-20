@@ -70,6 +70,28 @@ router.post("/:id", async (req, res) => {
   }
 });
 
+router.patch("/:id/:cardId", async (req, res) => {
+  try {
+    const { id, cardId } = req.params;
+    const boardId = parseInt(id);
+    const { voteCount } = req.body;
+    const board = await prisma.board.findUnique({
+      where: { boardId },
+    });
+    if (!board) {
+      return res.status(404).send("Board not found");
+    }
+    const updatedCard = await prisma.card.update({
+      where: { cardId: parseInt(cardId) },
+      data: { voteCount },
+    });
+    res.json(updatedCard);
+  } catch (error) {
+    console.error(error); // Log the error to help diagnose the issue
+    res.status(500).send("Internal server error");
+  }
+});
+
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
   try {
