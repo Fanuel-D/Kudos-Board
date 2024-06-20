@@ -7,12 +7,15 @@ function Modal({ isOpenBool, isClosedFunc }) {
     category: "",
     author: "",
     image: "",
+    createdAt: "",
   });
 
-  if (formData.image == "") {
+  if (formData.image == "" || formData.createdAt == "") {
     const randomNumber = Math.floor(Math.random() * 21);
     let newImage = `https://picsum.photos/200/300?random=${randomNumber}`;
-    setFormData({ image: newImage });
+    const now = new Date();
+    const formattedDate = now.toISOString().replace(/\.\d{3}Z$/, "");
+    setFormData({ image: newImage, createdAt: formattedDate });
   }
 
   const handleChange = (e) => {

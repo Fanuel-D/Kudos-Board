@@ -69,14 +69,11 @@ function App() {
       );
     }
 
-    if (filter === "Recent") {
+    if (filter === "recent") {
       filteredBoards.sort((a, b) => {
-        const dateA = a.createdAt
-          ? new Date(a.createdAt.replace(/\s/, "T"))
-          : new Date(0);
-        const dateB = b.createdAt
-          ? new Date(b.createdAt.replace(/\s/, "T"))
-          : new Date(0);
+        const dateA = a.createdAt ? new Date(a.createdAt) : new Date(0);
+        const dateB = b.createdAt ? new Date(b.createdAt) : new Date(0);
+
         return dateB - dateA;
       });
     } else if (filter == "all") {
@@ -87,12 +84,8 @@ function App() {
       );
     } else {
       filteredBoards.sort((a, b) => {
-        const dateA = a.createdAt
-          ? new Date(a.createdAt.replace(/\s/, "T"))
-          : new Date(0);
-        const dateB = b.createdAt
-          ? new Date(b.createdAt.replace(/\s/, "T"))
-          : new Date(0);
+        const dateA = a.createdAt ? new Date(a.createdAt) : new Date(0);
+        const dateB = b.createdAt ? new Date(b.createdAt) : new Date(0);
 
         return dateA - dateB;
       });
