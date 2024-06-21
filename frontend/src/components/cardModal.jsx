@@ -76,7 +76,7 @@ function CardModal({ isOpenBool, isClosedFunc, id }) {
         <div className="cardModalBackDrop">
           <div className="cardModalContent">
             <form onSubmit={handleSubmit}>
-              <label htmlFor="">Title</label>
+              <label style= {{color:"white"}}htmlFor="">Title</label>
               <input
                 style={{ border: "solid black 1px" }}
                 name="cardTitle"
@@ -84,7 +84,7 @@ function CardModal({ isOpenBool, isClosedFunc, id }) {
                 onChange={handleChange}
                 value={formData.cardTitle}
               />
-              <label htmlFor="">Author</label>
+              <label  style= {{color:"white"}} htmlFor="">Author</label>
               <input
                 style={{ border: "solid black 1px" }}
                 name="author"
@@ -92,7 +92,7 @@ function CardModal({ isOpenBool, isClosedFunc, id }) {
                 type="text"
                 value={formData.author}
               />
-              <label htmlFor="">Message</label>
+              <label  style= {{color:"white"}} htmlFor="">Message</label>
               <input
                 style={{ border: "solid black 1px" }}
                 name="message"

@@ -3,6 +3,28 @@ import "../styles/kudosCard.css";
 function KudosCard({ id, card, handleDelete }) {
   const [voteCount, setVoteCount] = useState(card.voteCount);
 
+  const handleSubmit = () => {
+    fetch(`http://localhost:3000/boards/comments/${id}/${card.cardId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ comment: comment }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Failed to update board.");
+      })
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+
   const handleVoteClicked = () => {
     let newCount = voteCount + 1;
     fetch(`https://kudos-board-9v24.onrender.com/boards/${id}/${card.cardId}`, {
