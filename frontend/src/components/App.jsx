@@ -26,7 +26,7 @@ function App() {
   };
 
   const handleDelete = (id) => {
-    fetch(`https://kudos-board-9v24.onrender.com/${id}`, {
+    fetch(`https://kudos-board-9v24.onrender.com/boards/${id}`, {
       method: "DELETE",
     })
       .then((response) => {
