@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT;
 const boards = require("./routes/allBoards.js");
-const userRoutes = require("./routes/userRoutes");
+const userRoutes = require("./routes/auth.js");
 
 app.use(cors());
 app.use(express.json());

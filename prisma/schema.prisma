@@ -15,7 +15,8 @@ datasource db {
 
 model User {
   userId   Int @id @default(autoincrement())
-  name     String
+  username String @unique
+  name     String @unique
   email    String
   password String
   boards   Board[]
@@ -39,7 +40,7 @@ model Card {
   message   String
   gif       String
   author    String?
-  voteCount Int?
+  voteCount Int? @default(0)
   board     Board @relation(fields:[boardId], references: [boardId])
   boardId   Int
 }
