@@ -7,7 +7,6 @@ import Modal from "./modal.jsx";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LoginForm from "./logInForm";
 import SignupForm from "./signUpForm";
-import { UserProvider } from "../../UserContext.jsx";
 
 function App() {
   let filteredBoards;
@@ -89,7 +88,6 @@ function App() {
   };
 
   return (
-    <UserProvider>
       <Router>
         <Routes>
           <Route
@@ -149,7 +147,6 @@ function App() {
           <Route path="/signup" element={<SignupForm />} />
         </Routes>
       </Router>
-    </UserProvider>
   );
 }
 
