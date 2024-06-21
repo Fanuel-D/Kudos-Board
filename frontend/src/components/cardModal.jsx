@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import PropTypes from "prop-types";
 import "../styles/cardModal.css";
 
 function CardModal({ isOpenBool, isClosedFunc, id }) {
@@ -148,8 +147,4 @@ function CardModal({ isOpenBool, isClosedFunc, id }) {
   );
 }
 
-// Modal.propTypes = {
-//   isOpenBool: PropTypes.bool,
-//   isClosedFunc: PropTypes.func,
-// };
 export default CardModal;

@@ -11,7 +11,6 @@ function KudosBoard({ board, handleDelete }) {
   return (
     <div
       className="kudos-card"
-      // onClick={(e) => onClickSelectedCard(movie.id, e)}
     >
       <img src={imgURL} alt="there is an image here" className="imageTag" />
       <div
@@ -43,17 +42,6 @@ function KudosBoard({ board, handleDelete }) {
   );
 }
 
-// MovieCard.propTypes = {
-//   onClickSelectedCard: PropTypes.func,
-//   watchedMoviesHandler: PropTypes.func,
-//   likedMoviesHandler: PropTypes.func,
-//   movie: PropTypes.object,
-// };
+
 
 export default KudosBoard;
-{
-  /* <a
-href={`http://localhost:3000/boards/${board.boardId}`}
-className="view-board"
-> */
-}

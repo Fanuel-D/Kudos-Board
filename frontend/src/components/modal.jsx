@@ -1,6 +1,6 @@
 import "../styles/modal.css";
 import { useState } from "react";
-// import PropTypes from "prop-types";
+
 function Modal({ isOpenBool, isClosedFunc }) {
   const [formData, setFormData] = useState({
     title: "",
@@ -103,8 +103,5 @@ function Modal({ isOpenBool, isClosedFunc }) {
   );
 }
 
-// Modal.propTypes = {
-//   isOpenBool: PropTypes.bool,
-//   isClosedFunc: PropTypes.func,
-// };
+
 export default Modal;
