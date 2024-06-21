@@ -16,7 +16,7 @@ const SignupForm = () => {
 
     try {
       // Make the signup API request
-      const response = await fetch(`http://localhost:3000/users`, {
+      const response = await fetch(`https://kudos-board-9v24.onrender.com/users`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

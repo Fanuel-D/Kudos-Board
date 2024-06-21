@@ -28,7 +28,7 @@ function Modal({ isOpenBool, isClosedFunc }) {
   };
 
   const handleSubmit = () => {
-    fetch("http://localhost:3000/boards", {
+    fetch("https://kudos-board-9v24.onrender.com/boards", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -5,7 +5,7 @@ function KudosCard({ id, card, handleDelete }) {
 
   const handleVoteClicked = () => {
     let newCount = voteCount + 1;
-    fetch(`http://localhost:3000/boards/${id}/${card.cardId}`, {
+    fetch(`https://kudos-board-9v24.onrender.com/boards/${id}/${card.cardId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
