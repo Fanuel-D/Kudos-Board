@@ -49,8 +49,7 @@ function CardModal({ isOpenBool, isClosedFunc, id }) {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     fetch(`https://kudos-board-9v24.onrender.com/boards/${id}`, {
       method: "POST",
       headers: {
