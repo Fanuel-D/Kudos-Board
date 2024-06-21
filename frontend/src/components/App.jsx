@@ -4,7 +4,7 @@ import KudosBoard from "./kudosBoard";
 import CardPage from "./cardPage.jsx";
 import "../styles/App.css";
 import Modal from "./modal.jsx";
-import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import LoginForm from "./logInForm";
 import SignupForm from "./signUpForm";
 
@@ -89,7 +89,7 @@ function App() {
 
   return (
       <Router>
-        <switch>
+        <Switch>
           <Route
             path="/"
             element={
@@ -145,7 +145,7 @@ function App() {
           <Route path="/boards/:id" element={<CardPage />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/signup" element={<SignupForm />} />
-        </switch>
+        </Switch>
       </Router>
   );
 }
