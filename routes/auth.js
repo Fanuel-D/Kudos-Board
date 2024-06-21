@@ -1,5 +1,6 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
+const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const router = express.Router();
 
@@ -10,7 +11,7 @@ router.post("/users", async (req, res) => {
   try {
     // Check if username or email already exists
     const existingUser = await prisma.user.findFirst({
-      where: { userId: { username }, email },
+      where: { OR: [{ userId: username, email: email }] },
     });
 
     if (existingUser) {
@@ -24,9 +25,11 @@ router.post("/users", async (req, res) => {
 
     // Create a new user
     const newUser = await prisma.user.create({
-      username,
-      password: hashedPassword,
-      email,
+      data: {
+        username: username,
+        password: hashedPassword,
+        email: email,
+      },
     });
 
     // Set the user in the session
@@ -46,7 +49,7 @@ router.post("/users/login", async (req, res) => {
 
   try {
     // Find the user by username
-    const user = await User.findOne({ where: { username } });
+    const user = await prisma.user.findUnique({ where: { username } });
 
     if (!user) {
       return res.status(401).json({ error: "Invalid username or password" });
@@ -70,4 +73,4 @@ router.post("/users/login", async (req, res) => {
   }
 });
 
-export default router;
+module.exports = router;

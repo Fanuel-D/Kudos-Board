@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "../../UserContext.js";
+import { UserContext } from "../../UserContext.jsx";
 import "../styles/logInForm.css";
 
 const LoginForm = () => {

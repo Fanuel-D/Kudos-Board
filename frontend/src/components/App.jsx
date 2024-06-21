@@ -7,6 +7,7 @@ import Modal from "./modal.jsx";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LoginForm from "./logInForm";
 import SignupForm from "./signUpForm";
+import { UserProvider } from "../../UserContext.jsx";
 
 function App() {
   let filteredBoards;
@@ -88,65 +89,67 @@ function App() {
   };
 
   return (
-    <Router>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <div className="App" style={{ textAlign: "center" }}>
-              <header className="appHeader">
-                <h1 className="nameOfSite" style={{ marginLeft: "20px" }}>
-                  Kudos Board
-                </h1>
-                <SearchForm
-                  className="searchForm"
-                  formUpdate={handleFormSubmit}
-                />
-                <div>
-                  <button onClick={() => setFilter("all")}>All</button>
-                  <button onClick={() => setFilter("recent")}>Recent</button>
-                  <button onClick={() => setFilter("celebration")}>
-                    Celebrations
+    <UserProvider>
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div className="App" style={{ textAlign: "center" }}>
+                <header className="appHeader">
+                  <h1 className="nameOfSite" style={{ marginLeft: "20px" }}>
+                    Kudos Board
+                  </h1>
+                  <SearchForm
+                    className="searchForm"
+                    formUpdate={handleFormSubmit}
+                  />
+                  <div>
+                    <button onClick={() => setFilter("all")}>All</button>
+                    <button onClick={() => setFilter("recent")}>Recent</button>
+                    <button onClick={() => setFilter("celebration")}>
+                      Celebrations
+                    </button>
+                    <button onClick={() => setFilter("thankYou")}>
+                      Thank You
+                    </button>
+                    <button onClick={() => setFilter("inspiration")}>
+                      Inspiration
+                    </button>
+                  </div>
+                  <button
+                    onClick={() => setModalOpen(true)}
+                    className="createNewBoardButton"
+                    style={{ width: "30%" }}
+                  >
+                    Create New Board
                   </button>
-                  <button onClick={() => setFilter("thankYou")}>
-                    Thank You
-                  </button>
-                  <button onClick={() => setFilter("inspiration")}>
-                    Inspiration
-                  </button>
-                </div>
-                <button
-                  onClick={() => setModalOpen(true)}
-                  className="createNewBoardButton"
-                  style={{ width: "30%" }}
-                >
-                  Create New Board
-                </button>
-              </header>
+                </header>
 
-              <Modal isOpenBool={isModalOpen} isClosedFunc={handleClosed} />
-              <div className="bodyPart">
-                <div className="innerBodyPart">
-                  {filterBoardsFunction().map((board) => {
-                    return (
-                      <KudosBoard
-                        key={board.boardId}
-                        board={board}
-                        handleDelete={handleDelete}
-                      />
-                    );
-                  })}
+                <Modal isOpenBool={isModalOpen} isClosedFunc={handleClosed} />
+                <div className="bodyPart">
+                  <div className="innerBodyPart">
+                    {filterBoardsFunction().map((board) => {
+                      return (
+                        <KudosBoard
+                          key={board.boardId}
+                          board={board}
+                          handleDelete={handleDelete}
+                        />
+                      );
+                    })}
+                  </div>
                 </div>
+                <footer className="appFooter">Designed by Fanuel Dana</footer>
               </div>
-              <footer className="appFooter">Designed by Fanuel Dana</footer>
-            </div>
-          }
-        />
-        <Route path="/boards/:id" element={<CardPage />} />
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/signup" element={<SignupForm />} />
-      </Routes>
-    </Router>
+            }
+          />
+          <Route path="/boards/:id" element={<CardPage />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/signup" element={<SignupForm />} />
+        </Routes>
+      </Router>
+    </UserProvider>
   );
 }
 
