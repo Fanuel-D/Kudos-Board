@@ -40,7 +40,7 @@ function Modal({ isOpenBool, isClosedFunc }) {
           return response.json();
         }
 
-        throw new Error("Failed to add pet.");
+        throw new Error("Failed to add board.");
       })
       .then((data) => {
         console.log("Success:", data);

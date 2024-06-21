@@ -22,14 +22,14 @@ function CardPage() {
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Failed to delete the pet.");
+          throw new Error("Failed to delete the card.");
         }
 
         setCards(cards.filter((card) => card.cardId !== id));
       })
       .catch((error) => {
         console.error("Error:", error);
-        setError("Failed to delete pet. Please try again later.");
+        setError("Failed to delete card. Please try again later.");
       });
   };
 

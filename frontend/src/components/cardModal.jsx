@@ -61,7 +61,7 @@ function CardModal({ isOpenBool, isClosedFunc, id }) {
         if (response.ok) {
           return response.json();
         }
-        throw new Error("Failed to add pet.");
+        throw new Error("Failed to card.");
       })
       .then((data) => {
         console.log("Success:", data);

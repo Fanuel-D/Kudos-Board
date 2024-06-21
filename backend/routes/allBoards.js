@@ -9,6 +9,28 @@ router.get("/", async (req, res) => {
   return res.json(boards);
 });
 
+router.patch("/comments/:id/:cardId", async (req, res) => {
+  try {
+    const { id, cardId } = req.params;
+    const boardId = parseInt(id);
+    const { comment } = req.body;
+    const board = await prisma.board.findUnique({
+      where: { boardId },
+    });
+    if (!board) {
+      return res.status(404).send("Board not found");
+    }
+    const updatedCard = await prisma.card.update({
+      where: { cardId: parseInt(cardId) },
+      data: { comment },
+    });
+    res.json(updatedCard);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal server error");
+  }
+});
+
 router.post("/", async (req, res) => {
   const { title, category, author, image, createdAt } = req.body;
   const newBoard = await prisma.board.create({

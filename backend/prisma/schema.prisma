@@ -43,4 +43,5 @@ model Card {
   voteCount Int? @default(0)
   board     Board @relation(fields:[boardId], references: [boardId])
   boardId   Int
+  comment   String?
 }

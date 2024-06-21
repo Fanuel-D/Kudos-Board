@@ -36,9 +36,10 @@ function KudosCard({ id, card, handleDelete }) {
     <div className="kudosCard">
       <img className="cardGif" src={card.gif} alt="there is a gif here" />
       <div>
-        <p>{card.cardTitle}</p>
-        <p>{card.message}</p>
-        <p>{card.author}</p>
+        <h4>Title: {card.cardTitle}</h4>
+        <h4>Message: {card.message}</h4>
+        <h4>Author: {card.author}</h4>
+        <h4>Comment: {card.comment}</h4>
       </div>
       <div className="cardButtons">
         <button
@@ -54,6 +55,18 @@ function KudosCard({ id, card, handleDelete }) {
         >
           Upvote: {card.voteCount}
         </button>
+        <form onSubmit={handleSubmit}>
+              <input
+                style={{ border: "solid black 1px", height:"30px", width: "110px" }}
+                name="title"
+                type="text"
+                onChange={handleChange}
+                value= {comment}
+                placeholder="Add comments"
+              />
+              <button>Submit</button>
+          </form>
+
       </div>
     </div>
   );

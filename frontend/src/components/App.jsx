@@ -30,14 +30,14 @@ function App() {
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Failed to delete the pet.");
+          throw new Error("Failed to delete.");
         }
 
         setBoards(boards.filter((board) => board.boardId !== id));
       })
       .catch((error) => {
         console.error("Error:", error);
-        setError("Failed to delete pet. Please try again later.");
+        setError("Failed to delete . Please try again later.");
       });
   };
 
