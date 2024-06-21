@@ -22,7 +22,7 @@ function CardModal({ isOpenBool, isClosedFunc, id }) {
   const searchGifs = async (e) => {
     e.preventDefault();
     fetch(
-      `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${searchPhrase}&limit=6&offset=0&rating=g&lang=en&bundle=messaging_non_clips`
+      `https://api.giphy.com/v1/gifs/search?api_key=qPgsqnoFXJeHSMJnH1pod2VBwH8QIgZG&q=${searchPhrase}&limit=6&offset=0&rating=g&lang=en&bundle=messaging_non_clips`
     )
       .then((response) => {
         if (!response.ok) {
