@@ -3,6 +3,13 @@ import "../styles/kudosCard.css";
 function KudosCard({ id, card, handleDelete }) {
   const [voteCount, setVoteCount] = useState(card.voteCount);
 
+
+  const [comment, setComment] = useState("");
+
+  const handleChange = (event) => {
+    setComment(event.target.value);
+  };
+
   const handleSubmit = () => {
     fetch(`http://localhost:3000/boards/comments/${id}/${card.cardId}`, {
       method: "PATCH",
