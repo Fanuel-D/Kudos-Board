@@ -43,7 +43,7 @@ function CardPage() {
         return response.json();
       })
       .then((data) => {
-        setCards(data);
+        setCards(data.cards);
       })
       .catch((error) => {
         console.error("There was a problem with your fetch operation:", error);
