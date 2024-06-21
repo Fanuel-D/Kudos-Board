@@ -26,7 +26,7 @@ function KudosBoard({ board, handleDelete }) {
         </div>
 
         <div className="bottomButtons">
-          <Link to={"https://kudos-board-9v24.onrender.com/boards/" + board.boardId}>
+          <Link to={"/boards/" + board.boardId}>
             <button className="viewBoard"> View Board</button>
           </Link>
           <button

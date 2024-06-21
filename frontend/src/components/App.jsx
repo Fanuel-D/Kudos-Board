@@ -144,7 +144,7 @@ function App() {
               </div>
             }
           />
-          <Route path="https://kudos-board-9v24.onrender.com/boards/:id" element={<CardPage />} />
+          <Route path="/boards/:id" element={<CardPage />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/signup" element={<SignupForm />} />
         </Routes>
