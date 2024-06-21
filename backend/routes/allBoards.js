@@ -38,8 +38,9 @@ router.get("/search", async (req, res) => {
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const searchedBoard = await prisma.card.findMany({
+    const searchedBoard = await prisma.card.findUnique({
       where: { boardId: parseInt(id) },
+      include: { cards: true },
     });
     res.json(searchedBoard);
   } catch (error) {
