@@ -88,7 +88,7 @@ function App() {
   };
 
   return (
-      <Router basename= "/frontend" >
+      <Router>
         <switch>
           <Route
             path="/"
