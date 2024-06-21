@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
   return res.json(boards);
 });
 
-router.patch("/comments/:id/:cardId", async (req, res) => {
+router.put("/comments/:id/:cardId", async (req, res) => {
   try {
     const { id, cardId } = req.params;
     const boardId = parseInt(id);

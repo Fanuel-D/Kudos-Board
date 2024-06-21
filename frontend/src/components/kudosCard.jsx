@@ -10,7 +10,7 @@ function KudosCard({ id, card, handleDelete }) {
 
   const handleSubmit = () => {
     fetch(`https://kudos-board-9v24.onrender.com/boards/comments/${id}/${card.cardId}`, {
-      method: "PATCH",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
