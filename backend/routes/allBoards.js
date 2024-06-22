@@ -22,7 +22,7 @@ router.put("/comments/:id/:cardId", async (req, res) => {
     }
     const updatedCard = await prisma.card.update({
       where: { cardId: parseInt(cardId) },
-      data: { comment },
+      data: { comment: comment },
     });
     res.json(updatedCard);
   } catch (error) {
