@@ -2,7 +2,7 @@
 
 Submitted by: **Fanuel Dana**
 
-Deployed Application (optional): [Kudos Board Deployed Site]([(https://kudos-board-6qhv.onrender.com)])
+Deployed Application (optional): [Kudos Board Deployed Site](https://kudos-board-6qhv.onrender.com)
 
 ### Application Features
 
@@ -46,15 +46,15 @@ Deployed Application (optional): [Kudos Board Deployed Site]([(https://kudos-boa
 
 * Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Add your response here
+A lot of the topics that were in the labs and assignment did come up but there was also a lot we had to learn on our own.
 
 * If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
-  
-Add your response here
 
+I would've worked on sign up and log in page.
+  
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
-Add your response here
+Deployment was acting a bit unusal, making changes after deployment was hard. The models weren't migrating correctly and that led to other issues arising from it. I noticed that one of my peers (Daniel) used user ids for the recent filter, which was pretty clever and required less work than assigning time stamps to users and making that part of models. 
 
 ### Open-source libraries used
 
@@ -62,4 +62,4 @@ Add your response here
 
 ### Shout out
 
-Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
+Thomas(instructor)--bouncing ideas off of him really helped and 
