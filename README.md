@@ -32,8 +32,8 @@ Deployed Application (optional): [Kudos Board Deployed Site](https://kudos-board
 
 #### STRETCH FEATURES
 
-- [ ] **Deployment**
-  - [ ] Website is deployed via Render.
+- [X] **Deployment**
+  - [X] Website is deployed via Render.
 - [X] **Comments**
   - [X] Users should be able to comment on cards.
 
