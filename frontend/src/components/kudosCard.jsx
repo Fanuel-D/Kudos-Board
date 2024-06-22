@@ -8,9 +8,10 @@ function KudosCard({ id, card, handleDelete }) {
     setComment(event.target.value);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
     fetch(`https://kudos-board-9v24.onrender.com/boards/comments/${id}/${card.cardId}`, {
-      method: "PUT",
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
@@ -33,7 +34,7 @@ function KudosCard({ id, card, handleDelete }) {
   const handleVoteClicked = () => {
     let newCount = voteCount + 1;
     fetch(`https://kudos-board-9v24.onrender.com/boards/${id}/${card.cardId}`, {
-      method: "PUT",
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
