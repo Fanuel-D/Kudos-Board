@@ -2,7 +2,7 @@
 
 Submitted by: **Fanuel Dana**
 
-Deployed Application (optional): [Kudos Board Deployed Site](ADD_LINK_HERE)
+Deployed Application (optional): [Kudos Board Deployed Site]((https://kudos-board-6qhv.onrender.com/))
 
 ### Application Features
 
