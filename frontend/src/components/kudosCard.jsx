@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "../styles/kudosCard.css";
 function KudosCard({ id, card, handleDelete }) {
   const [voteCount, setVoteCount] = useState(card.voteCount);
-  const [comment, setComment] = useState("");
+  const [comment, setComment] = useState(card.comment);
 
   const handleChange = (event) => {
     setComment(event.target.value);
