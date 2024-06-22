@@ -4,7 +4,7 @@ import KudosBoard from "./kudosBoard";
 import CardPage from "./cardPage.jsx";
 import "../styles/App.css";
 import Modal from "./modal.jsx";
-import { HashRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import LoginForm from "./logInForm";
 import SignupForm from "./signUpForm";
 
@@ -25,7 +25,7 @@ function App() {
   };
 
   const handleDelete = (id) => {
-    fetch(`https://kudos-board-9v24.onrender.com/boards/${id}`, {
+    fetch(``, {
       method: "DELETE",
     })
       .then((response) => {
@@ -42,9 +42,9 @@ function App() {
   };
 
   useEffect(() => {
-    let URL = `https://kudos-board-9v24.onrender.com/boards`;
+    let URL = ``;
     if (searchQuery != "") {
-      URL = `https://kudos-board-9v24.onrender.com/boards/search?boardName=${searchQuery}`;
+      URL = ``;
     }
     fetch(URL, { method: "GET" })
       .then((response) => {
@@ -88,65 +88,65 @@ function App() {
   };
 
   return (
-      <Router>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <div className="App" style={{ textAlign: "center" }}>
-                <header className="appHeader">
-                  <h1 className="nameOfSite" style={{ marginLeft: "20px" }}>
-                    Kudos Board
-                  </h1>
-                  <SearchForm
-                    className="searchForm"
-                    formUpdate={handleFormSubmit}
-                  />
-                  <div>
-                    <button onClick={() => setFilter("all")}>All</button>
-                    <button onClick={() => setFilter("recent")}>Recent</button>
-                    <button onClick={() => setFilter("celebration")}>
-                      Celebrations
-                    </button>
-                    <button onClick={() => setFilter("thankYou")}>
-                      Thank You
-                    </button>
-                    <button onClick={() => setFilter("inspiration")}>
-                      Inspiration
-                    </button>
-                  </div>
-                  <button
-                    onClick={() => setModalOpen(true)}
-                    className="createNewBoardButton"
-                    style={{ width: "30%" }}
-                  >
-                    Create New Board
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div className="App" style={{ textAlign: "center" }}>
+              <header className="appHeader">
+                <h1 className="nameOfSite" style={{ marginLeft: "20px" }}>
+                  Kudos Board
+                </h1>
+                <SearchForm
+                  className="searchForm"
+                  formUpdate={handleFormSubmit}
+                />
+                <div>
+                  <button onClick={() => setFilter("all")}>All</button>
+                  <button onClick={() => setFilter("recent")}>Recent</button>
+                  <button onClick={() => setFilter("celebration")}>
+                    Celebrations
                   </button>
-                </header>
-
-                <Modal isOpenBool={isModalOpen} isClosedFunc={handleClosed} />
-                <div className="bodyPart">
-                  <div className="innerBodyPart">
-                    {filterBoardsFunction().map((board) => {
-                      return (
-                        <KudosBoard
-                          key={board.boardId}
-                          board={board}
-                          handleDelete={handleDelete}
-                        />
-                      );
-                    })}
-                  </div>
+                  <button onClick={() => setFilter("thankYou")}>
+                    Thank You
+                  </button>
+                  <button onClick={() => setFilter("inspiration")}>
+                    Inspiration
+                  </button>
                 </div>
-                <footer className="appFooter">Designed by Fanuel Dana</footer>
+                <button
+                  onClick={() => setModalOpen(true)}
+                  className="createNewBoardButton"
+                  style={{ width: "30%" }}
+                >
+                  Create New Board
+                </button>
+              </header>
+
+              <Modal isOpenBool={isModalOpen} isClosedFunc={handleClosed} />
+              <div className="bodyPart">
+                <div className="innerBodyPart">
+                  {filterBoardsFunction().map((board) => {
+                    return (
+                      <KudosBoard
+                        key={board.boardId}
+                        board={board}
+                        handleDelete={handleDelete}
+                      />
+                    );
+                  })}
+                </div>
               </div>
-            }
-          />
-          <Route path="/boards/:id" element={<CardPage />} />
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/signup" element={<SignupForm />} />
-        </Routes>
-      </Router>
+              <footer className="appFooter">Designed by Fanuel Dana</footer>
+            </div>
+          }
+        />
+        <Route path="/boards/:id" element={<CardPage />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/signup" element={<SignupForm />} />
+      </Routes>
+    </Router>
   );
 }
 

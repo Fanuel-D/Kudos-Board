@@ -17,7 +17,7 @@ function CardPage() {
   };
 
   const handleDelete = (cardId) => {
-    fetch(`https://kudos-board-9v24.onrender.com/boards/${id}/${cardId}`, {
+    fetch(``, {
       method: "DELETE",
     })
       .then((response) => {
@@ -34,7 +34,7 @@ function CardPage() {
   };
 
   useEffect(() => {
-    const URL = `https://kudos-board-9v24.onrender.com/boards/${id}`;
+    const URL = ``;
     fetch(URL, { method: "GET" })
       .then((response) => {
         if (!response.ok) {
@@ -49,7 +49,6 @@ function CardPage() {
         console.error("There was a problem with your fetch operation:", error);
       });
   }, [cards]);
-
 
   return (
     <div>

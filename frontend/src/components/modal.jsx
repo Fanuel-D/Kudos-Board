@@ -28,7 +28,7 @@ function Modal({ isOpenBool, isClosedFunc }) {
   };
 
   const handleSubmit = () => {
-    fetch("https://kudos-board-9v24.onrender.com/boards", {
+    fetch("", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -102,6 +102,5 @@ function Modal({ isOpenBool, isClosedFunc }) {
     </div>
   );
 }
-
 
 export default Modal;

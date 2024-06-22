@@ -9,14 +9,17 @@ function KudosCard({ id, card, handleDelete }) {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    fetch(`https://kudos-board-9v24.onrender.com/boards/comments/${id}/${card.cardId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ comment: comment }),
-    })
+    e.preventDefault();
+    fetch(
+      `https://kudos-board-9v24.onrender.com/boards/comments/${id}/${card.cardId}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ comment: comment }),
+      }
+    )
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -29,11 +32,11 @@ function KudosCard({ id, card, handleDelete }) {
       .catch((error) => {
         console.error("Error:", error);
       });
-  }
+  };
 
   const handleVoteClicked = () => {
     let newCount = voteCount + 1;
-    fetch(`https://kudos-board-9v24.onrender.com/boards/${id}/${card.cardId}`, {
+    fetch(``, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -84,17 +87,20 @@ function KudosCard({ id, card, handleDelete }) {
           Upvote: {card.voteCount}
         </button>
         <form onSubmit={handleSubmit}>
-              <input
-                style={{ border: "solid black 1px", height:"30px", width: "110px" }}
-                name="title"
-                type="text"
-                onChange={handleChange}
-                value= {comment}
-                placeholder="Add comments"
-              />
-              <button>Submit</button>
-          </form>
-
+          <input
+            style={{
+              border: "solid black 1px",
+              height: "30px",
+              width: "110px",
+            }}
+            name="title"
+            type="text"
+            onChange={handleChange}
+            value={comment}
+            placeholder="Add comments"
+          />
+          <button>Submit</button>
+        </form>
       </div>
     </div>
   );

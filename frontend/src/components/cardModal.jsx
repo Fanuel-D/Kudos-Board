@@ -50,7 +50,7 @@ function CardModal({ isOpenBool, isClosedFunc, id }) {
   };
 
   const handleSubmit = () => {
-    fetch(`https://kudos-board-9v24.onrender.com/boards/${id}`, {
+    fetch(``, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -76,7 +76,9 @@ function CardModal({ isOpenBool, isClosedFunc, id }) {
         <div className="cardModalBackDrop">
           <div className="cardModalContent">
             <form onSubmit={handleSubmit}>
-              <label style= {{color:"white"}}htmlFor="">Title</label>
+              <label style={{ color: "white" }} htmlFor="">
+                Title
+              </label>
               <input
                 style={{ border: "solid black 1px" }}
                 name="cardTitle"
@@ -84,7 +86,9 @@ function CardModal({ isOpenBool, isClosedFunc, id }) {
                 onChange={handleChange}
                 value={formData.cardTitle}
               />
-              <label  style= {{color:"white"}} htmlFor="">Author</label>
+              <label style={{ color: "white" }} htmlFor="">
+                Author
+              </label>
               <input
                 style={{ border: "solid black 1px" }}
                 name="author"
@@ -92,7 +96,9 @@ function CardModal({ isOpenBool, isClosedFunc, id }) {
                 type="text"
                 value={formData.author}
               />
-              <label  style= {{color:"white"}} htmlFor="">Message</label>
+              <label style={{ color: "white" }} htmlFor="">
+                Message
+              </label>
               <input
                 style={{ border: "solid black 1px" }}
                 name="message"

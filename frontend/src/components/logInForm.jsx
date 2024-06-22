@@ -15,7 +15,7 @@ const LoginForm = () => {
 
     try {
       // Make the login API request
-      const response = await fetch(`https://kudos-board-9v24.onrender.com/users/login`, {
+      const response = await fetch(``, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
