@@ -33,7 +33,7 @@ function KudosCard({ id, card, handleDelete }) {
   const handleVoteClicked = () => {
     let newCount = voteCount + 1;
     fetch(`https://kudos-board-9v24.onrender.com/boards/${id}/${card.cardId}`, {
-      method: "PATCH",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },

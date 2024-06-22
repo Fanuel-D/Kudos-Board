@@ -92,7 +92,7 @@ router.post("/:id", async (req, res) => {
   }
 });
 
-router.patch("/:id/:cardId", async (req, res) => {
+router.put("/:id/:cardId", async (req, res) => {
   try {
     const { id, cardId } = req.params;
     const boardId = parseInt(id);
