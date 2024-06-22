@@ -11,7 +11,7 @@ function KudosCard({ id, card, handleDelete }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     fetch(
-      `https://kudos-board-9v24.onrender.com/boards/comments/${id}/${card.cardId}`,
+      `https://kudos-board-mlsa.onrender.com/boards/comments/${id}/${card.cardId}`,
       {
         method: "PATCH",
         headers: {
@@ -36,7 +36,7 @@ function KudosCard({ id, card, handleDelete }) {
 
   const handleVoteClicked = () => {
     let newCount = voteCount + 1;
-    fetch(``, {
+    fetch(`https://kudos-board-mlsa.onrender.com/boards/${id}/${card.cardId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

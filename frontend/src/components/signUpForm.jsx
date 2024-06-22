@@ -16,14 +16,17 @@ const SignupForm = () => {
 
     try {
       // Make the signup API request
-      const response = await fetch(``, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, email, password }),
-        credentials: "include",
-      });
+      const response = await fetch(
+        `https://kudos-board-mlsa.onrender.com/users`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, email, password }),
+          credentials: "include",
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();
