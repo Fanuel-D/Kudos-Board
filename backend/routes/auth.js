@@ -9,7 +9,6 @@ router.post("/users", async (req, res) => {
   const { username, password, email } = req.body;
 
   try {
-    // Check if username or email already exists
     const existingUser = await prisma.user.findFirst({
       where: { OR: [{ username: username }, { email: email }] },
     });
@@ -36,7 +35,7 @@ router.post("/users", async (req, res) => {
     req.session.user = newUser;
 
     // Return the user data in the response
-    res.json({ user: newUser });
+    // res.json({ user: newUser });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Server error" });
