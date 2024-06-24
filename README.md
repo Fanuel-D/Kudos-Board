@@ -62,4 +62,4 @@ Deployment was acting a bit unusal, making changes after deployment was hard. Th
 
 ### Shout out
 
-Thomas(instructor)--bouncing ideas off of him really helped and 
+Thomas(instructor)--bouncing ideas off of him really helped and Kam.
